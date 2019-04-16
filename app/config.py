@@ -12,5 +12,5 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     API_KEY = os.environ.get('API_KEY') or ''
     LANGUAGES = ['en', 'zh']
-    ELASTICSEARCH_URL = "http://" + os.environ.get('ELASTICSEARCH_HOST') + ":" +
-                        os.environ.get('ELASTICSEARCH_PORT')
+    ELASTICSEARCH_URL = "http://" + os.environ.get('ELASTICSEARCH_HOST') + ":"\
+                        + os.environ.get('ELASTICSEARCH_PORT')

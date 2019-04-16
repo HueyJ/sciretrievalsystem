@@ -1,12 +1,46 @@
-2019-04-16 14:16:31,268 ERROR: Exception on / [POST] [in c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\flask\app.py:1761]
+2019-04-16 16:43:28,049 ERROR: Exception on / [POST] [in c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\flask\app.py:1761]
 Traceback (most recent call last):
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\redis\connection.py", line 492, in connect
-    sock = self._connect()
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\redis\connection.py", line 550, in _connect
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\urllib3\connection.py", line 141, in _new_conn
+    (self.host, self.port), self.timeout, **extra_kw)
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\urllib3\util\connection.py", line 83, in create_connection
     raise err
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\redis\connection.py", line 538, in _connect
-    sock.connect(socket_address)
-ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+OSError: [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\urllib3\connectionpool.py", line 601, in urlopen
+    chunked=chunked)
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\urllib3\connectionpool.py", line 357, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "C:\Users\i355865\AppData\Local\Programs\Python\Python37\lib\http\client.py", line 1229, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "C:\Users\i355865\AppData\Local\Programs\Python\Python37\lib\http\client.py", line 1275, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "C:\Users\i355865\AppData\Local\Programs\Python\Python37\lib\http\client.py", line 1224, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "C:\Users\i355865\AppData\Local\Programs\Python\Python37\lib\http\client.py", line 1016, in _send_output
+    self.send(msg)
+  File "C:\Users\i355865\AppData\Local\Programs\Python\Python37\lib\http\client.py", line 956, in send
+    self.connect()
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\urllib3\connection.py", line 166, in connect
+    conn = self._new_conn()
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\urllib3\connection.py", line 150, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x0000024E059694E0>: Failed to establish a new connection: [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\requests\adapters.py", line 440, in send
+    timeout=timeout
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\urllib3\connectionpool.py", line 639, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\urllib3\util\retry.py", line 388, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='47.101.219.172', port=9200): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000024E059694E0>: Failed to establish a new connection: [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions'))
 
 During handling of the above exception, another exception occurred:
 
@@ -25,58 +59,16 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\main\routes.py", line 14, in index
     results = query_processor.process(search_terms)
-  File "C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\query_process.py", line 26, in process
-    if self.redis_operator.check(stem):
-  File "C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\query_process.py", line 83, in check
-    return Redis(connection_pool=self.pool).get(query)
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\redis\client.py", line 1264, in get
-    return self.execute_command('GET', name)
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\redis\client.py", line 772, in execute_command
-    connection = pool.get_connection(command_name, **options)
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\redis\connection.py", line 994, in get_connection
-    connection.connect()
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\redis\connection.py", line 497, in connect
-    raise ConnectionError(self._error_message(e))
-redis.exceptions.ConnectionError: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
-2019-04-16 14:18:48,946 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:40]
-2019-04-16 14:48:56,044 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:40]
-2019-04-16 14:49:03,481 ERROR: Exception on / [POST] [in c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\flask\app.py:1761]
-Traceback (most recent call last):
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\flask\app.py", line 2292, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\flask\_compat.py", line 35, in reraise
-    raise value
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\flask\app.py", line 1799, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\main\routes.py", line 13, in index
-    query_processor = QueryProcessor()
-  File "C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\query_process.py", line 21, in __init__
-    self.redis_operator = RedisOperator(REDIS_HOST, REDIS_PORT,
-NameError: name 'REDIS_HOST' is not defined
-2019-04-16 14:49:52,529 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:40]
-2019-04-16 14:49:58,728 ERROR: Exception on / [POST] [in c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\flask\app.py:1761]
-Traceback (most recent call last):
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\flask\app.py", line 2292, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\flask\_compat.py", line 35, in reraise
-    raise value
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\flask\app.py", line 1799, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\main\routes.py", line 13, in index
-    query_processor = QueryProcessor()
-  File "C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\query_process.py", line 28, in __init__
-    self.es = Elasticsearch("http://" + self.ELASTICSEARCH_HOST + ":" + self.ELASTICSEARCH_PORT)
-TypeError: can only concatenate str (not "int") to str
-2019-04-16 14:50:31,454 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:40]
+  File "C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\query_process.py", line 32, in process
+    print(requests.get("http://47.101.219.172:9200"))
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\requests\api.py", line 72, in get
+    return request('get', url, params=params, **kwargs)
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\requests\api.py", line 58, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\requests\sessions.py", line 508, in request
+    resp = self.send(prep, **send_kwargs)
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\requests\sessions.py", line 618, in send
+    r = adapter.send(request, **kwargs)
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\playground\venv\lib\site-packages\requests\adapters.py", line 508, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='47.101.219.172', port=9200): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000024E059694E0>: Failed to establish a new connection: [WinError 10013] An attempt was made to access a socket in a way forbidden by its access permissions'))

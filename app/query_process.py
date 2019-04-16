@@ -2,6 +2,7 @@ from redis import Redis, ConnectionPool
 from redis.exceptions import ConnectionError
 from porter_stemmer import PorterStemmer
 from flask import current_app
+import requests
 import os
 
 class QueryProcessor:
@@ -28,7 +29,7 @@ class QueryProcessor:
             try:
                 if self.redis_operator.check(stem):
                     self.redis_operator.add(stem)
-                    # TODO print(self.es.)
+                    print(requests.get("http://47.101.219.172:9200"))
                 else:
                     self.redis_operator.add(stem)
                     print("send search request to scrapy first, and then get the results from backend")
