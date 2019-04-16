@@ -1,0 +1,37 @@
+{% extends 'bootstrap/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>{% if title %}{{ title }} - SCIRetrieve{% else %}{{ _('Welcome to SCIRetrieve') }}{% endif %}</title>
+
+    {% block styles %}
+    {{super()}}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+    {% block app_content %}{% endblock %}
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <!-- {{ moment.include_moment() }}
+    {{ moment.lang(g.locale) }}
+    <script>
+        function translate(sourceElem, destElem, sourceLang, destLang) {
+            $(destElem).html('<img src="{{ url_for('static', filename='loading.gif') }}">');
+            $.post('/translate', {
+                text: $(sourceElem).text(),
+                source_language: sourceLang,
+                dest_language: destLang
+            }).done(function(response) {
+                $(destElem).text(response['text'])
+            }).fail(function() {
+                $(destElem).text("{{ _('Error: Could not contact server.') }}");
+            });
+        }
+    </script> -->
+{% endblock %}
+</body>
+</html>
