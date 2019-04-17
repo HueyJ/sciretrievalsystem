@@ -3,7 +3,9 @@
 <html lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>{% if title %}{{ title }} - SCIRetrieve{% else %}{{ _('Welcome to SCIRetrieve') }}{% endif %}</title>
+    {% if title %}
+    <title>{{ title }} - SCIRetrieve{% else %}{{ _('Welcome to SCIRetrieve') }}</title>
+    {% endif %}
 
     {% block styles %}
     {{super()}}

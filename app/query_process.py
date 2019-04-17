@@ -29,7 +29,7 @@ class QueryProcessor:
             try:
                 if self.redis_operator.check(stem):
                     self.redis_operator.add(stem)
-                    print(requests.get("http://47.101.219.172:9200"))
+                    results = self.__query()
                 else:
                     self.redis_operator.add(stem)
                     print("send search request to scrapy first, and then get the results from backend")
@@ -61,6 +61,23 @@ class QueryProcessor:
             stem = self.stemmer.stem(token)
             stems.append(stem)
         return stems
+
+    def __query(self, index, query, page, per_page):
+        if not current_app.elasticsearch:
+            return [], 0
+        query_body = {
+            'query': {
+                'multi_match': {
+                    'query': query,
+                    'fields': ['*']
+                }
+            },
+            'from': (page - 1) * per_page, 'size': per_page
+        }
+        search = current_app.elasticsearch.search(index=index, doc_type=index,
+                    body=query_body)
+        ids = [int(hit['_id']) for hit in search['hits']['hits']]
+        return ids, search
 
 class RedisOperator:
     instance = None
