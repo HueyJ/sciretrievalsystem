@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_babel import Babel, lazy_gettext as _l
-from elasticsearch import Elasticsearch
+from es_processor import ESProcessor
 from config import Config
 
 db = SQLAlchemy()
@@ -22,8 +22,8 @@ def create_app(config_class=Config):
     bootstrap.init_app(app)
     moment.init_app(app)
     babel.init_app(app)
-    app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
-                        if app.config['ELASTICSEARCH_URL'] else None
+    app.elasticsearch = ESProcessor(app.config['ELASTICSEARCH_URL'], 
+                            app.config['INDEX_NAME'])
 
     from webapp.main import bp as main_bp
     app.register_blueprint(main_bp)

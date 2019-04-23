@@ -14,3 +14,4 @@ class Config(object):
     LANGUAGES = ['en', 'zh']
     ELASTICSEARCH_URL = "http://" + os.environ.get('ELASTICSEARCH_HOST') + ":"\
                         + os.environ.get('ELASTICSEARCH_PORT')
+    INDEX_NAME = os.environ.get('INDEX_NAME')

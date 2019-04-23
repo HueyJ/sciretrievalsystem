@@ -16,8 +16,6 @@ dist/
 build/
 *.egg-info/
 
-ir/
+materials/
 
-bs/
-
-webapptutorial/
+*.whl

@@ -18,6 +18,8 @@
 {% endblock %}
 {% block scripts %}
     {{ super() }}
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <!-- {{ moment.include_moment() }}
     {{ moment.lang(g.locale) }}
     <script>

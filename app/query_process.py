@@ -2,7 +2,6 @@ from redis import Redis, ConnectionPool
 from redis.exceptions import ConnectionError
 from porter_stemmer import PorterStemmer
 from flask import current_app
-import requests
 import os
 
 class QueryProcessor:
@@ -25,11 +24,12 @@ class QueryProcessor:
     def process(self, search_terms):
         results = []
         stems = self.__stem(self.__tokenize(search_terms))
+        print(stems)
         for stem in stems:
             try:
                 if self.redis_operator.check(stem):
                     self.redis_operator.add(stem)
-                    results = self.__query()
+                    # results = current_app.
                 else:
                     self.redis_operator.add(stem)
                     print("send search request to scrapy first, and then get the results from backend")
@@ -56,25 +56,25 @@ class QueryProcessor:
         return tokens
 
     def __stem(self, tokens):
+        print(tokens)
         stems = []
         for token in tokens:
             stem = self.stemmer.stem(token)
             stems.append(stem)
         return stems
 
-    def __query(self, index, query, page, per_page):
+    def __query(self, query):
         if not current_app.elasticsearch:
             return [], 0
         query_body = {
             'query': {
                 'multi_match': {
                     'query': query,
-                    'fields': ['*']
+                    'fields': ["title^2", "abstract", "*"]
                 }
-            },
-            'from': (page - 1) * per_page, 'size': per_page
+            }
         }
-        search = current_app.elasticsearch.search(index=index, doc_type=index,
+        search = current_app.elasticsearch.search(index="TODO", doc_type="TODO",
                     body=query_body)
         ids = [int(hit['_id']) for hit in search['hits']['hits']]
         return ids, search
