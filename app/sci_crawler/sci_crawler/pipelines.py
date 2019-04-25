@@ -5,18 +5,38 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 from scrapy.conf import settings
-from scrapy.exporters import JsonItemExporter
+import requests, os, json
 
-class SciCrawlerPipeline(object):
+class SciCrawlerESPipeline(object):
     def __init__(self):
-        self.file = open('test.json', 'wb')
-        self.exporter = JsonItemExporter(self.file, encoding="utf-8", ensure_ascii=False)
-        self.exporter.start_exporting()
-
-    def close_spider(self, spider):
-        self.exporter.finish_exporting()
-        self.file.close()
+        self.es_url = "http://" + os.environ.get('ELASTICSEARCH_HOST') + ":"\
+                                + os.environ.get('ELASTICSEARCH_PORT')
+        self.index_name = os.environ.get('INDEX_NAME')
+        self.type_name = os.environ.get('TYPE_NAME')
 
     def process_item(self, item, spider):
-        self.exporter.export_item(item)
-        return item
+        documentDict = {item["pii"]: dict(item)}
+        self.__index(documentDict)
+        self.__jsonize(item)
+
+
+    def __index(self, documentDict):
+        bulkDocs = ""
+        for id, document in documentDict.items():
+            addCmd = {
+                "index" : {
+                    "_index" : self.index_name,
+                    "_type" : self.type_name,
+                    "_id" : id
+                }
+            }
+            bulkDocs += json.dumps(addCmd) + "\n" + json.dumps(document) + "\n"
+        resp = requests.post(self.es_url + "/_bulk",
+                             data=bulkDocs,
+                             headers={"Content-Type" : "application/x-ndjson"})
+
+    def __jsonize(self, item):
+        with open("../articles/" + item["pii"] + ".json", "wb") as f:
+            f.write(b"[\n")
+            f.write(json.dumps(dict(item)).encode(encoding='utf-8'))
+            f.write(b"\n]")

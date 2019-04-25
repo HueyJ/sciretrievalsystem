@@ -8,6 +8,7 @@
 #     https://doc.scrapy.org/en/latest/topics/settings.html
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
+import os
 
 BOT_NAME = 'sci_crawler'
 
@@ -22,7 +23,7 @@ NEWSPIDER_MODULE = 'sci_crawler.spiders'
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 64
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -44,7 +45,7 @@ ROBOTSTXT_OBEY = False
 #   'Accept-Language': 'en',
 #}
 DEFAULT_REQUEST_HEADERS = {
-    "X-ELS-APIKey" : "242169a086def115062a303fcdd35371"
+    "X-ELS-APIKey" : os.environ.get('API_KEY')
 }
 
 # Enable or disable spider middlewares
@@ -68,7 +69,8 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'sci_crawler.pipelines.SciCrawlerPipeline': 300,
+   # 'sci_crawler.pipelines.SciCrawlerJSONPipeline': 800,
+   'sci_crawler.pipelines.SciCrawlerESPipeline': 100,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
