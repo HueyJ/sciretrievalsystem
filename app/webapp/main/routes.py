@@ -12,7 +12,7 @@ def index():
         search_terms = form.search.data
         query_processor = QueryProcessor()
         results = query_processor.process(search_terms)
-        results = range(100)
+        print(results)
         # search_history = SearchHistory(search_terms=search_terms, user_ip=request.remote_addr)
         # db.session.add(search_history)
         # db.session.commit()

@@ -1,12 +1,29 @@
-2019-04-23 10:41:58,534 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
-2019-04-23 10:42:19,243 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
-2019-04-23 10:42:31,302 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
-2019-04-23 10:46:42,515 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
-2019-04-23 10:53:05,435 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
-2019-04-23 10:54:00,244 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
-2019-04-23 10:57:36,462 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
-2019-04-23 10:59:37,227 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
-2019-04-23 11:00:32,460 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
-2019-04-23 11:00:39,904 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
-2019-04-23 11:00:50,816 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
-2019-04-25 11:13:45,055 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
+2019-04-26 17:48:22,147 ERROR: Exception on / [POST] [in c:\users\i355865\onedrive - sap se\xuanyij\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\sciretrievalsystem\venv\lib\site-packages\flask\_compat.py", line 35, in reraise
+    raise value
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\i355865\onedrive - sap se\xuanyij\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\main\routes.py", line 14, in index
+    results = query_processor.process(search_terms)
+  File "C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\query_process.py", line 36, in process
+    return self.__query(stems)
+  File "C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\query_process.py", line 81, in __query
+    return ESProcessor("http://127.0.0.1:9200", "sci").search(query)
+NameError: name 'ESProcessor' is not defined
+2019-04-26 17:48:54,269 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
+2019-04-26 17:50:31,742 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
+2019-04-26 17:55:04,355 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
+2019-04-26 17:55:37,739 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
+2019-04-26 17:58:22,227 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
+2019-04-26 18:00:07,123 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
+2019-04-26 18:03:55,574 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]
+2019-04-26 18:05:33,876 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:43]

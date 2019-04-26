@@ -22,7 +22,7 @@ def create_app(config_class=Config):
     bootstrap.init_app(app)
     moment.init_app(app)
     babel.init_app(app)
-    app.elasticsearch = ESProcessor(app.config['ELASTICSEARCH_URL'], 
+    app.es = ESProcessor(app.config['ELASTICSEARCH_URL'],
                             app.config['INDEX_NAME'])
 
     from webapp.main import bp as main_bp

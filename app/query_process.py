@@ -2,6 +2,7 @@ from redis import Redis, ConnectionPool
 from redis.exceptions import ConnectionError
 from porter_stemmer import PorterStemmer
 from flask import current_app
+from es_processor import ESProcessor
 import os
 
 class QueryProcessor:
@@ -22,20 +23,18 @@ class QueryProcessor:
             self.stemmer = Stemmer()
 
     def process(self, search_terms):
-        results = []
         stems = self.__stem(self.__tokenize(search_terms))
         print(stems)
-        for stem in stems:
-            try:
-                if self.redis_operator.check(stem):
-                    self.redis_operator.add(stem)
-                    # results = current_app.
-                else:
-                    self.redis_operator.add(stem)
-                    print("send search request to scrapy first, and then get the results from backend")
-            except (ConnectionError, ConnectionRefusedError):
-                    print("Connect to Redis failed.")
-        return results
+        # for stem in stems:
+        #     try:
+        #         if self.redis_operator.check(stem):
+        #             self.redis_operator.add(stem)
+        #         else:
+        #             self.redis_operator.add(stem)
+        #             print("send search request to scrapy first, and then get the results from backend")
+        #     except (ConnectionError, ConnectionRefusedError):
+        #             print("Connect to Redis failed.")
+        return self.__query(stems)["hits"]["hits"]
 
     def __tokenize(self, raw_text):
         # split words into words use punctuation
@@ -63,21 +62,25 @@ class QueryProcessor:
             stems.append(stem)
         return stems
 
-    def __query(self, query):
-        if not current_app.elasticsearch:
-            return [], 0
-        query_body = {
+    def __query(self, stems):
+        if not current_app.es:
+            return []
+        query_expression = ""
+        for stem in stems:
+            query_expression += stem + " "
+        print(query_expression)
+        query = {
             'query': {
                 'multi_match': {
-                    'query': query,
-                    'fields': ["title^2", "abstract", "*"]
+                    'query': query_expression,
+                    'fields': [
+                        'title^10', 'abstract', 'subject^5'
+                    ],
+                    "fuzziness": "AUTO"
                 }
             }
         }
-        search = current_app.elasticsearch.search(index="TODO", doc_type="TODO",
-                    body=query_body)
-        ids = [int(hit['_id']) for hit in search['hits']['hits']]
-        return ids, search
+        return ESProcessor("http://127.0.0.1:9200", "sci").search(query)
 
 class RedisOperator:
     instance = None
