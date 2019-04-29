@@ -54,6 +54,8 @@ class SCISpider(scrapy.Spider):
         if response_dict.get("full-text-retrieval-response"):
             document = response_dict["full-text-retrieval-response"]["coredata"]
             item = SciCrawlerItem()
+            item["id"] = response_dict["full-text-retrieval-response"]\
+                            ["scopus-id"]
             yield self.__process(item, document)
 
 

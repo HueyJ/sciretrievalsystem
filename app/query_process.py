@@ -76,7 +76,7 @@ class QueryProcessor:
                     'fields': [
                         'title^10', 'abstract', 'subject^5'
                     ],
-                    "fuzziness": "AUTO"
+                    "fuzziness": "3"
                 }
             }
         }

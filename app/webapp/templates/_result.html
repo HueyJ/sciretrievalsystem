@@ -6,19 +6,15 @@
         <td><h2>{{ result._source.title }}</h2></td>
     </tr>
     <tr>
-        <td>{{ result._source.authors }}</td>
+        <td>{{ result._source.author }}</td>
     </tr>
     <tr>
-        <td class="panel panel-default">
-            <div class="panel-heading" role="tab" id="{{ result._source.eid }}">
-                <a role="button" data-toggle="collapse" href="#{{ result._source.eid }}-abstract" aria-expanded="false" aria-controls="{{ result._source.eid }}-abstract">
-                    Abstract
-                </a>
-            </div>
-            <div id="{{ result._source.eid }}-abstract" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{ result._source.eid }}">
-                <div class="panel-body">
-                    {{ result._source.abstract }}
-                </div>
+        <td>
+            <a data-toggle="collapse" href="#{{ result._source.id }}-abstract">
+                Abstract
+            </a>
+            <div id="{{ result._source.id }}-abstract" class="collapse">
+                {{ result._source.abstract }}
             </div>
         </td>
     </tr>

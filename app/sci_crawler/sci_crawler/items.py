@@ -11,6 +11,7 @@ import scrapy
 class SciCrawlerItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
+    id = scrapy.Field()
     href = scrapy.Field()
     eid = scrapy.Field()
     aggregationType = scrapy.Field()

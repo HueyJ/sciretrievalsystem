@@ -21,22 +21,7 @@ class ESProcessor:
         return results
 
 
-    def reindex(self, analysisSettings={}, mappingSettings={}, nos=1):
-        settings = {
-            "settings" : {
-                "number_of_shards" : nos,
-                "index" : {
-                    "analysis" : analysisSettings
-                }
-            }
-        }
-        if mappingSettings:
-            settings["mappings"] = mappingSettings
 
-        resp = requests.delete(self.es_url + "/" + self.index_name)
-        resp = requests.put(self.es_url + "/" + self.index_name,
-                            data=json.dumps(settings),
-                            headers={"Content-Type" : "application/json"})
 
 
 if __name__ == "__main__":
