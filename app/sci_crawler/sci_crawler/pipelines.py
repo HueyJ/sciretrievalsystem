@@ -15,10 +15,10 @@ class SciCrawlerESPipeline(object):
         self.type_name = os.environ.get('TYPE_NAME')
 
     def process_item(self, item, spider):
-        documentDict = {item["pii"]: dict(item)}
+        documentDict = {item["id"]: dict(item)}
         # self.__reindex()
         self.__index(documentDict)
-        self.__jsonize(item)
+        # self.__jsonize(item)
 
 
     def __index(self, documentDict):
@@ -37,25 +37,9 @@ class SciCrawlerESPipeline(object):
                              headers={"Content-Type" : "application/x-ndjson"})
 
 
-    def __reindex(self, analysisSettings={}, mappingSettings={}, nos=1):
-        settings = {
-            "settings" : {
-                "number_of_shards" : nos,
-                "index" : {
-                    "analysis" : analysisSettings
-                }
-            }
-        }
-        if mappingSettings:
-            settings["mappings"] = mappingSettings
-
-        resp = requests.delete(self.es_url + "/" + self.index_name)
-        resp = requests.put(self.es_url + "/" + self.index_name,
-                            data=json.dumps(settings),
-                            headers={"Content-Type" : "application/json"})
 
     def __jsonize(self, item):
-        with open("../articles/" + item["pii"] + ".json", "wb") as f:
+        with open("../articles/" + item["id"] + ".json", "wb") as f:
             f.write(b"[\n")
             f.write(json.dumps(dict(item)).encode(encoding='utf-8'))
             f.write(b"\n]")

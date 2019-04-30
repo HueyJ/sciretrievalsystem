@@ -2,10 +2,14 @@
 
 {% block app_content %}
 <div class="container text-center">
-    <form class="form-main-search" method="post" autocomplete="off">
+    <form
+        class="form-main-search"
+        method="post"
+        autocomplete="off">
         <h1 class="text-center">{{ _('SCIRetrieve') }}</h1>
         {{ form.csrf_token }}
         {{ form.search(class='form-control') }}
     </form>
+
 </div>
 {% endblock %}

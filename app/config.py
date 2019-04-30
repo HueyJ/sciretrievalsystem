@@ -15,3 +15,7 @@ class Config(object):
     ELASTICSEARCH_URL = "http://" + os.environ.get('ELASTICSEARCH_HOST') + ":"\
                         + os.environ.get('ELASTICSEARCH_PORT')
     INDEX_NAME = os.environ.get('INDEX_NAME')
+    
+    REDIS_HOST = os.environ.get('REDIS_HOST')
+    REDIS_PORT = os.environ.get('REDIS_PORT')
+    REDIS_DECODE_RES = os.environ.get('REDIS_DECODE_RES')

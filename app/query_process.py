@@ -1,5 +1,3 @@
-from redis import Redis, ConnectionPool
-from redis.exceptions import ConnectionError
 from porter_stemmer import PorterStemmer
 from flask import current_app
 from es_processor import ESProcessor
@@ -7,34 +5,25 @@ import os
 
 class QueryProcessor:
 
-    REDIS_HOST = os.environ.get('REDIS_HOST')
-    REDIS_PORT = os.environ.get('REDIS_PORT')
-    REDIS_DECODE_RES = os.environ.get('REDIS_DECODE_RES')
-
-    redis_operator = None
     stemmer = None
 
     def __init__(self):
-        if not self.redis_operator:
-            self.redis_operator = RedisOperator(self.REDIS_HOST, self.REDIS_PORT,
-                                    self.REDIS_DECODE_RES).get_instance()
-
         if not self.stemmer:
             self.stemmer = Stemmer()
 
     def process(self, search_terms):
-        stems = self.__stem(self.__tokenize(search_terms))
-        print(stems)
+        # stems = self.__stem(self.__tokenize(search_terms))
+        # print(stems)
         # for stem in stems:
         #     try:
-        #         if self.redis_operator.check(stem):
+        #         if current_app.redis.check(stem):
         #             self.redis_operator.add(stem)
         #         else:
         #             self.redis_operator.add(stem)
         #             print("send search request to scrapy first, and then get the results from backend")
         #     except (ConnectionError, ConnectionRefusedError):
         #             print("Connect to Redis failed.")
-        return self.__query(stems)["hits"]["hits"]
+        return self.__query(search_terms)["hits"]["hits"]
 
     def __tokenize(self, raw_text):
         # split words into words use punctuation
@@ -62,17 +51,17 @@ class QueryProcessor:
             stems.append(stem)
         return stems
 
-    def __query(self, stems):
+    def __query(self, search_terms):
         if not current_app.es:
             return []
         query_expression = ""
-        for stem in stems:
-            query_expression += stem + " "
-        print(query_expression)
+        # for stem in stems:
+        #     query_expression += stem + " "
+        print(search_terms)
         query = {
             'query': {
                 'multi_match': {
-                    'query': query_expression,
+                    'query': search_terms,
                     'fields': [
                         'title^10', 'abstract', 'subject^5'
                     ],
@@ -80,34 +69,7 @@ class QueryProcessor:
                 }
             }
         }
-        return ESProcessor("http://127.0.0.1:9200", "sci").search(query)
-
-class RedisOperator:
-    instance = None
-
-    def __init__(self, redis_host='localhost', redis_port=6379,
-                 redis_decode_res=True):
-        if not self.instance:
-            RedisOperator.instance = RedisOperator.__RedisOperator(redis_host,
-                                                     redis_port,
-                                                     redis_decode_res)
-    def get_instance(self):
-        return self.instance
-
-    class __RedisOperator:
-        pool = None
-
-        def __init__(self, redis_host, redis_port, redis_decode_res):
-            if not self.pool:
-                self.pool = ConnectionPool(host=redis_host, port=redis_port,
-                                decode_responses=redis_decode_res)
-
-        def add(self, query):
-            return Redis(connection_pool=self.pool).incr(query, amount=1)
-
-        def check(self, query):
-            return Redis(connection_pool=self.pool).get(query)
-
+        return current_app.es.search(query)
 
 class Stemmer:
 

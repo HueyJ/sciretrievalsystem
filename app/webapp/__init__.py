@@ -7,6 +7,7 @@ from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_babel import Babel, lazy_gettext as _l
 from es_processor import ESProcessor
+from redis import StrictRedis
 from config import Config
 
 db = SQLAlchemy()
@@ -24,6 +25,8 @@ def create_app(config_class=Config):
     babel.init_app(app)
     app.es = ESProcessor(app.config['ELASTICSEARCH_URL'],
                             app.config['INDEX_NAME'])
+    app.redis = StrictRedis(app.config['REDIS_HOST'],
+                                app.config['REDIS_PORT'])
 
     from webapp.main import bp as main_bp
     app.register_blueprint(main_bp)

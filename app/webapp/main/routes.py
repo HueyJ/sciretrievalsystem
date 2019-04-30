@@ -1,65 +1,54 @@
-from flask import render_template, g, redirect, url_for
+from flask import render_template, g, redirect, url_for, request, current_app
 from webapp.forms import SearchForm
 from flask_babel import _
 from webapp.main import bp
 from query_process import QueryProcessor
 from math import ceil
+from urllib.parse import unquote_plus, quote_plus
+import json, _thread
+
+per_page = 2
+
+@bp.before_request
+def before_request():
+    g.search_form = SearchForm()
 
 @bp.route('/', methods=['GET', 'POST'])
 @bp.route('/index', methods=['GET', 'POST'])
 def index():
-    form = SearchForm()
-    if form.validate_on_submit():
-        search_terms = form.search.data
+    if g.search_form.validate_on_submit():
+        return redirect(url_for('main.query', query=g.search_form.search.data))
+    return render_template('index.html', title=_('Home'), form=g.search_form)
+
+@bp.route("/query/<search_terms>", methods=['GET', 'POST'])
+@bp.route("/query/", methods=['GET', 'POST'])
+def query(search_terms=None):
+    if 'curr_page' not in locals():
+        curr_page = 1
+    if g.search_form.validate_on_submit() or search_terms is not None:
+        search_terms = g.search_form.search.data or unquote_plus(search_terms)
         query_processor = QueryProcessor()
-        results = query_processor.process(search_terms)
-        total_num = len(results)
-        per_page = 2
-        curr_page = 0
-        pagination = Pagination(total_num, per_page, curr_page)
-        return render_template('query.html', title=search_terms, form=form,
-                                results=pagination.get_curr_results(results),
-                                pagination=pagination)
-    return render_template('index.html', title=_('Home'), form=form)
+        if 'results' not in g:
+            g.results = query_processor.process(search_terms)
+            page_num = int(ceil(len(g.results) / float(per_page)))
+            __cache_results(search_terms, g.results)
+        return render_template('query.html', title=search_terms,
+                                form=g.search_form,
+                                results=__current_results(curr_page,
+                                                            per_page,
+                                                            search_terms),
+                                page_num=page_num)
 
-class Pagination(object):
+@bp.route("/aquery/<search_terms>/<curr_page>", methods=['GET'])
+def aquery(search_terms=None, curr_page=None):
+        return __current_results(curr_page, per_page, search_terms)
 
-    def __init__(self, total_num, per_page, curr_page):
-        self.total_num = total_num
-        self.per_page = per_page
-        self.curr_page = curr_page
+def __current_results(curr_page, per_page, search_terms):
+    curr_page = int(curr_page) - 1
+    if 'results' in g:
+        return g.results[curr_page*per_page:curr_page*per_page+per_page]
+    else:
+        return json.loads(current_app.redis.get(search_terms))
 
-    def get_curr_results(self, results):
-        curr_results = results
-        if not self.has_prev:
-            curr_results = curr_results[:self.per_page]
-        elif not self.has_next:
-            curr_results = curr_results[(self.per_page * self.curr_page):]
-        else:
-            curr_results = curr_results[(self.per_page * self.curr_page)\
-            :(self.per_page * self.curr_page) + self.per_page]
-        return curr_results
-
-    @property
-    def page_num(self):
-        return int(ceil(self.total_num / float(self.per_page)))
-
-    @property
-    def next_page(self):
-        if self.has_next:
-            self.curr_page += 1
-        return self.curr_page
-
-    @property
-    def prev_page(self):
-        if self.has_prev:
-            self.curr_page -= 1
-        return self.curr_page
-
-    @property
-    def has_prev(self):
-        return self.curr_page > 0
-
-    @property
-    def has_next(self):
-        return self.page_num > self.curr_page
+def __cache_results(search_terms, results):
+    current_app.redis.set(search_terms, json.dumps(results))
