@@ -6,6 +6,7 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 from scrapy.conf import settings
 import requests, os, json
+# from sci_crawler.es_processor import ESProcessor
 
 class SciCrawlerESPipeline(object):
     def __init__(self):
@@ -19,12 +20,17 @@ class SciCrawlerESPipeline(object):
         # self.__reindex()
         self.__index(documentDict)
         # self.__jsonize(item)
+        return item
 
 
     def __index(self, documentDict):
         bulkDocs = ""
         for id, document in documentDict.items():
             addCmd = {
+                # "delete" : {
+                #     "_index" : self.index_name,
+                #     "_id" : id
+                # },
                 "index" : {
                     "_index" : self.index_name,
                     "_type" : self.type_name,
