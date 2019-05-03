@@ -6,6 +6,7 @@ from sci_crawler.items import SciCrawlerItem
 
 class SCISpider(scrapy.Spider):
     name = "SCI"
+    ifContinue = True
 
 
     def __init__(self, query=""):
@@ -39,16 +40,18 @@ class SCISpider(scrapy.Spider):
                                     "?httpAccept=application/json"
                 yield scrapy.Request(url=article_url, callback=self.parse)
 
-            # links = results["link"]
-            # if links[-2]["@ref"] == "next":
-            #     next_page = links[-2]["@href"]
-            # else:
-            #     for link in links:
-            #         if link["@ref"] == "next":
-            #             next_page = link["@href"]
-            # if next_page is not None:
-            #     next_page = response.urljoin(next_page)
-            #     yield scrapy.Request(next_page, callback=self.parse)
+
+            links = results["link"]
+            if links[-2]["@ref"] == "next":
+                next_page = links[-2]["@href"]
+            else:
+                for link in links:
+                    if link["@ref"] == "next":
+                        next_page = link["@href"]
+            if next_page is not None and self.ifContinue:
+                # self.ifContinue = False
+                next_page = response.urljoin(next_page)
+                yield scrapy.Request(next_page, callback=self.parse)
 
 
         # if the content crawled is article, parse it

@@ -141,7 +141,7 @@ go-top button
 .go-top:link,
 .go-top:visited {
     position: fixed;
-    bottom: 2em;
+    bottom: 8em;
     right: 2em;
     text-decoration: none;
     color: white;
