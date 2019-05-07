@@ -1,26 +1,135 @@
-2019-05-03 13:20:41,922 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 13:23:42,768 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 13:24:35,058 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 13:26:53,904 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 13:27:57,327 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 13:28:51,562 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 13:29:49,114 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 13:31:16,145 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 13:35:50,729 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 13:41:08,232 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 13:42:17,626 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 13:42:43,503 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 13:45:09,642 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 14:06:57,057 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 14:07:31,823 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 14:31:12,317 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 14:35:10,556 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 14:58:29,602 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 14:59:43,617 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 15:01:02,754 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 15:04:48,715 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 15:06:36,080 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 15:07:29,520 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 15:10:00,514 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 15:11:59,805 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
-2019-05-03 15:16:23,478 INFO: SCIRetrieve startup [in C:\Users\i355865\OneDrive - SAP SE\xuanyij\projects\sciretrievalsystem\app\webapp\__init__.py:46]
+2019-05-07 21:03:17,748 ERROR: Exception on /query/information [GET] [in d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\_compat.py", line 35, in reraise
+    raise value
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Projects\sciretrievalsystem\app\webapp\main\routes.py", line 38, in query
+    facet=facet
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\templating.py", line 135, in render_template
+    context, ctx.app)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\templating.py", line 117, in _render
+    rv = template.render(context)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "D:\Projects\sciretrievalsystem\app\webapp\templates\query.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "D:\Projects\sciretrievalsystem\app\webapp\templates\base.html", line 6, in top-level template code
+    {% if title %}
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 4, in block "doc"
+    {%- block html %}
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 20, in block "html"
+    {% block body -%}
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 23, in block "body"
+    {% block content -%}
+  File "D:\Projects\sciretrievalsystem\app\webapp\templates\base.html", line 17, in block "content"
+    {% block app_content %}{% endblock %}
+  File "D:\Projects\sciretrievalsystem\app\webapp\templates\query.html", line 31, in block "app_content"
+    {% for key, values in facet %}
+ValueError: too many values to unpack (expected 2)
+2019-05-07 21:03:55,385 INFO: SCIRetrieve startup [in D:\Projects\sciretrievalsystem\app\webapp\__init__.py:46]
+2019-05-07 21:03:57,707 ERROR: Exception on /query/information [GET] [in d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\_compat.py", line 35, in reraise
+    raise value
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Projects\sciretrievalsystem\app\webapp\main\routes.py", line 34, in query
+    facet = __facet(results);
+  File "D:\Projects\sciretrievalsystem\app\webapp\main\routes.py", line 56, in __facet
+    if article_type not in facet["Article Type"].keys():
+AttributeError: 'list' object has no attribute 'keys'
+2019-05-07 21:14:12,156 INFO: SCIRetrieve startup [in D:\Projects\sciretrievalsystem\app\webapp\__init__.py:46]
+2019-05-07 21:14:15,087 ERROR: Exception on /query/information [GET] [in d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\_compat.py", line 35, in reraise
+    raise value
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Projects\sciretrievalsystem\app\webapp\main\routes.py", line 38, in query
+    facet=facet
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\templating.py", line 135, in render_template
+    context, ctx.app)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\templating.py", line 117, in _render
+    rv = template.render(context)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "D:\Projects\sciretrievalsystem\app\webapp\templates\query.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "D:\Projects\sciretrievalsystem\app\webapp\templates\base.html", line 6, in top-level template code
+    {% if title %}
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 4, in block "doc"
+    {%- block html %}
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 20, in block "html"
+    {% block body -%}
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 23, in block "body"
+    {% block content -%}
+  File "D:\Projects\sciretrievalsystem\app\webapp\templates\base.html", line 17, in block "content"
+    {% block app_content %}{% endblock %}
+  File "D:\Projects\sciretrievalsystem\app\webapp\templates\query.html", line 31, in block "app_content"
+    {% for key, values in facet %}
+ValueError: too many values to unpack (expected 2)
+2019-05-07 21:24:55,033 INFO: SCIRetrieve startup [in D:\Projects\sciretrievalsystem\app\webapp\__init__.py:46]
+2019-05-07 22:25:05,991 INFO: SCIRetrieve startup [in D:\Projects\sciretrievalsystem\app\webapp\__init__.py:46]
+2019-05-07 22:25:11,873 ERROR: Exception on /aquery/information/1 [GET] [in d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\_compat.py", line 35, in reraise
+    raise value
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "d:\projects\sciretrievalsystem\venv\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\Projects\sciretrievalsystem\app\webapp\main\routes.py", line 45, in aquery
+    return __current_results(curr_page, per_page, search_terms)
+  File "D:\Projects\sciretrievalsystem\app\webapp\main\routes.py", line 51, in __current_results
+    facet = json.dumps(__facet(results))
+  File "D:\Projects\sciretrievalsystem\app\webapp\main\routes.py", line 90, in __facet
+    if openaccess not in facet["Openaccess"]:
+NameError: name 'openaccess' is not defined
+2019-05-07 22:26:16,299 INFO: SCIRetrieve startup [in D:\Projects\sciretrievalsystem\app\webapp\__init__.py:46]

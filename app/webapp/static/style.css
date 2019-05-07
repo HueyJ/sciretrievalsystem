@@ -4,6 +4,14 @@ body {
     font-size: .875rem;
 }
 
+strong {
+    background-color: #F0E68C;
+}
+
+#result-list {
+    position: relative;
+}
+
 .container {
     display: -ms-flexbox;
     display: flex;
@@ -36,8 +44,6 @@ body {
 
 
 /* query.html */
-
-
 .query-container {
     padding-top: 40px;
 }
@@ -64,6 +70,7 @@ body {
         top: 51px;
         bottom: 0;
         left: 0;
+        height: 100%;
         z-index: 1000;
         display: block;
         padding: 20px;
@@ -135,6 +142,26 @@ body {
 }
 
 /*
+pagination list
+*/
+/* #page-nav {
+    position: fixed;
+    bottom: 1em;
+    display: none;
+    opacity: 0.5;
+}
+
+
+#page-nav:hover {
+    opacity: 1;
+}
+
+.page-placeholder {
+    padding-top: 50px;
+} */
+
+
+/*
 go-top button
 */
 .go-top,
@@ -153,4 +180,17 @@ go-top button
 
 .go-top:hover {
     background-color: rgba(0, 0, 0, 0.6);
+}
+
+#navbar a {
+    font-size: 0.5em;
+}
+
+@media (max-width: 767px) {
+    #result-container {
+        padding-top: 70px;
+    }
+    .sidebar {
+        padding-top: 20px;
+    }
 }

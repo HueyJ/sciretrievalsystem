@@ -3,18 +3,19 @@ import os
 
 class QueryProcessor:
 
-    def process(self, search_terms):
-        return self.__query(search_terms)["hits"]["hits"]
+    def process(self, search_terms, start=1):
+        return self.__query(search_terms, start)["hits"]["hits"]
 
-    def __query(self, search_terms):
+    def __query(self, search_terms, start=1):
         if not current_app.es:
             return []
         query_expression = ""
         # for stem in stems:
         #     query_expression += stem + " "
         print(search_terms)
+        size = 100
         query = {
-            "from": 0, "size": 50,
+            "from": (start - 1) * size, "size": size,
             "query": {
                 "bool": {
                     "should": [
@@ -49,9 +50,9 @@ class QueryProcessor:
                             "multi_match": {
                                 "query": search_terms,
                                 "fields": [
-                                    "title^100",
-                                    "abstract^50",
-                                    "subject^10"
+                                    "title",
+                                    "abstract",
+                                    "subject"
                                 ],
                                 "fuzziness": 1
                             }
